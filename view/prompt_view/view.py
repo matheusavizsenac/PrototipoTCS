@@ -11,7 +11,7 @@ prompt_controller = PromptInstrucaoController()
 @prompt_blueprint.route("/instrucao", methods=["GET"])
 @helper.token_required
 def get_instructions(current_user):
-    instrucoes = prompt_controller.get_instrucoes(current_user.id)
+    instrucoes = prompt_controller.get_all_instrucoes(current_user.id)
     instrucoes_json = []
     for instrucao in instrucoes:
         instrucoes_json.append({

@@ -12,6 +12,10 @@ class PromptInstrucaoController:
             })
         return instrucoes_lista
 
+    def get_all_instrucoes(self, user_id):
+        instrucoes = Prompts.query.filter(Prompts.usuario_id == user_id)
+        return instrucoes
+
     def insert(self, user_id, instrucao):
         prompt_model = Prompts()
         prompt_model.set_ativo(False)
