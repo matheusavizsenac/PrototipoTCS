@@ -1,10 +1,11 @@
 from flask import jsonify
 from model.prompt import Prompts
 from model import db
+from sqlalchemy import or_
 
 class PromptInstrucaoController:
     def get_instrucoes(self, user_id):
-        instrucoes = Prompts.query.filter(Prompts.usuario_id == user_id)
+        instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == user_id))
         instrucoes_lista = []
         for instrucoes_gpt in instrucoes:
             instrucoes_lista.append({
@@ -13,7 +14,7 @@ class PromptInstrucaoController:
         return instrucoes_lista
 
     def get_all_instrucoes(self, user_id):
-        instrucoes = Prompts.query.filter(Prompts.usuario_id == user_id)
+        instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == user_id))
         return instrucoes
 
     def insert(self, user_id, instrucao):
