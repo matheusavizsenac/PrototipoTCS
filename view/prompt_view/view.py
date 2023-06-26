@@ -13,6 +13,7 @@ prompt_controller = PromptInstrucaoController()
 def get_instructions(current_user):
     instrucoes = prompt_controller.get_all_instrucoes(current_user.id)
     instrucoes_json = []
+    print(instrucoes)
     for instrucao in instrucoes:
         instrucoes_json.append({
             'id': instrucao.id,
@@ -20,7 +21,7 @@ def get_instructions(current_user):
             'ativo': instrucao.ativo,
             'usuario_id': instrucao.usuario_id
         })
-    return jsonify(instrucoes_json), 201
+    return jsonify(instrucoes_json), 200
 
 @prompt_blueprint.route("/novainstrucao", methods=["POST"])
 @helper.token_required

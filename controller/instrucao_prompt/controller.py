@@ -14,7 +14,7 @@ class PromptInstrucaoController:
         return instrucoes_lista
 
     def get_all_instrucoes(self, user_id):
-        instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == user_id))
+        instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == 0))
         return instrucoes
 
     def insert(self, user_id, instrucao):
