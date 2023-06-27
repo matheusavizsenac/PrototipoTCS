@@ -18,7 +18,6 @@ user_controller = UserController()
 prompt_instrucao = PromptInstrucaoController()
 gpt_has_smells = GptHasSmellController()
 
-
 @gpt_blueprint.route("/historias", methods=["POST"])
 @helper.token_required
 def historias(current_user):
