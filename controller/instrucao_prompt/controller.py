@@ -9,7 +9,7 @@ class PromptInstrucaoController:
         instrucoes_lista = []
         for instrucoes_gpt in instrucoes:
             instrucoes_lista.append({
-                'instrucao': instrucoes_gpt.instrucao,
+                instrucoes_gpt.instrucao,
             })
         return instrucoes_lista
 
