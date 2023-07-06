@@ -8,9 +8,9 @@ class PromptInstrucaoController:
         instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == user_id))
         instrucoes_lista = []
         for instrucoes_gpt in instrucoes:
-            instrucoes_lista.append({
+            instrucoes_lista.append(
                 instrucoes_gpt.instrucao,
-            })
+            )
         return instrucoes_lista
 
     def get_all_instrucoes(self, user_id):
