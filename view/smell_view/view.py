@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, redirect, render_template, request, url_for
+from controller import helper
 from controller.smell_controller.controller import SmellController
 from controller.gpt_has_smell_controller.controller import GptHasSmellController
 from model.smell.smell import RequirementSmell
@@ -20,6 +21,7 @@ def get_smell_by_id(id):
     return smell_by_id_dict
 
 @smell_blueprint.route("/get_smell_status")
-def get_smell_status():
-    all_smells = smell_controller.get_all_smells()
+@helper.token_required
+def get_smell_status(current_user):
+    all_smells = smell_controller.get_all_smells(current_user)
     return gpt_has_smell_controller.get_count_smells(all_smells)
