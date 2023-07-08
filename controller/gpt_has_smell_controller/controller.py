@@ -26,10 +26,10 @@ class GptHasSmellController:
             })
         return gpt_smell_json
     
-    def get_count_smells(self, smells):
+    def get_count_smells(self, smells, user_id):
         id_smell_count = {}
         final_dict = {}
-        lista_smells = self.get_all_gpt_has_smell()
+        lista_smells = self.get_all_gpt_has_smell(user_id)
         for i in smells:
             id_smell_count[i["id"]] = 0
         for smell in lista_smells:

@@ -23,5 +23,5 @@ def get_smell_by_id(id):
 @smell_blueprint.route("/get_smell_status")
 @helper.token_required
 def get_smell_status(current_user):
-    all_smells = smell_controller.get_all_smells(current_user)
-    return gpt_has_smell_controller.get_count_smells(all_smells)
+    all_smells = smell_controller.get_all_smells()
+    return gpt_has_smell_controller.get_count_smells(all_smells, current_user)
