@@ -28,4 +28,4 @@ class User(db.Model):
         self.email = email
 
     def __repr__(self) -> str:
-        return "id: " + self.id + " nome: " + self.nome + " email: " + self.email
+        return "id: " + str(self.id )+ " nome: " + self.nome + " email: " + self.email

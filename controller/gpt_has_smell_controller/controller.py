@@ -1,13 +1,21 @@
+from flask import session
+from sqlalchemy import text
 from model.gpt_has_smell import GptHasSmell
 from model import db
+from model.gpt import Gpt
 
 class GptHasSmellController:
 
     def __init__(self):
         self.gpt_has_smells = GptHasSmell()
 
-    def get_all_gpt_has_smell(self):
-        gpt_has_smell = GptHasSmell.query.all()
+    def get_all_gpt_has_smell(self, user_id):
+        query = (
+            GptHasSmell.query
+            .join(Gpt, Gpt.id == GptHasSmell.id_gpt)
+            .filter(Gpt.usuario_id == user_id.id)
+        )
+        gpt_has_smell = query.all()
         gpt_smell_json = []
         for gpt_smell in gpt_has_smell:
             gpt_smell_json.append({
