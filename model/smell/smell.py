@@ -14,21 +14,22 @@ class RequirementSmell(db.Model):
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
     def get_smell(self, text, model, get_smells, instrucoes):
+        instrucoesLista = '\n- '.join(instrucoes)
+        instrucao = '- '+instrucoesLista
         textvar=text
-        prompt_text ='''{}/n{}/n Lista de smells possiveis de serem identificados: {}/n
-        {}/n{}/n Resposta: '''.format(PROMPT_DEFAULT, instrucoes, get_smells, PROMPT_FINAL, textvar)
+        prompt_text ='''{}{} \n\nHow you behave:\n{}\n\n\n{}{}\nResposta:'''.format(PROMPT_DEFAULT, get_smells, instrucao, PROMPT_FINAL, textvar)
         response = openai.Completion.create(
             model=model,
-            temperature=0.08,
-            top_p=0.3,
-            max_tokens= 256,
+            temperature=0.05,
+            top_p=0.1,
+            max_tokens= 512,
             prompt=prompt_text)
-        print('PROMPT: ')
+        print('--PROMPT: ')
         print(prompt_text)
-        print('USER STORIE: ')
-        print(text)
-        print('RESPONSE GPT: ')
-        print(response)
+        print('--USER STORIE: ')
+        print(textvar)
+        #print('RESPONSE GPT: ')
+        #print(response)
         return response
 
     def __repr__(self) -> str:

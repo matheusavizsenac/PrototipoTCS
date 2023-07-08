@@ -5,16 +5,16 @@ from sqlalchemy import or_
 
 class PromptInstrucaoController:
     def get_instrucoes(self, user_id):
-        instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == user_id))
+        instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == 0))
         instrucoes_lista = []
         for instrucoes_gpt in instrucoes:
-            instrucoes_lista.append({
-                'instrucao': instrucoes_gpt.instrucao,
-            })
+            instrucoes_lista.append(
+                instrucoes_gpt.instrucao,
+            )
         return instrucoes_lista
 
     def get_all_instrucoes(self, user_id):
-        instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == user_id))
+        instrucoes = Prompts.query.filter(or_(Prompts.usuario_id == user_id, Prompts.usuario_id == 0))
         return instrucoes
 
     def insert(self, user_id, instrucao):
